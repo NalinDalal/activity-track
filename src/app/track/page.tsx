@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-
+import { useRouter } from "next/navigation";
 export default function Home() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-
+  const router = useRouter();
   const features = [
     {
       icon: "⏱️",
@@ -55,6 +55,18 @@ export default function Home() {
         <h2 className="mb-16 text-4xl font-bold tracking-tight text-center md:text-5xl">
           What We Track
         </h2>
+        <div className="flex flex-col gap-4 items-center mb-16">
+          <p className="max-w-xl text-lg text-center text-white/70">
+            Real-time insights with zero bloat. Just powerful, privacy-friendly
+            analytics.
+          </p>
+          <button
+            onClick={() => router.push("/login")}
+            className="py-3 px-6 font-semibold text-white rounded-full border transition-all duration-300 hover:shadow-md bg-white/10 border-white/20 backdrop-blur-md hover:bg-white/20 hover:shadow-white/30"
+          >
+            Get Started
+          </button>
+        </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
@@ -62,13 +74,12 @@ export default function Home() {
               key={i}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 220, damping: 20 }}
-              className="overflow-hidden relative p-6 rounded-2xl border shadow-lg transition-all duration-300 border-white/10 bg-white/5 backdrop-blur-md hover:shadow-white/20"
+              className="overflow-hidden relative p-6 rounded-2xl border shadow-xl transition-all duration-300 border-white/20 bg-white/10 backdrop-blur-lg hover:shadow-white/30"
             >
               {/* Gradient border effect */}
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-300 pointer-events-none hover:border-white/20" />
 
-              {/* Icon block with subtle glow */}
-              <div className="flex justify-center items-center mb-4 w-12 h-12 text-2xl rounded-full shadow-inner bg-white/10 shadow-white/10">
+              <div className="flex justify-center items-center mb-4 w-14 h-14 text-2xl rounded-full shadow-inner transition-shadow duration-300 bg-white/10 shadow-white/10 hover:shadow-white/20">
                 {f.icon}
               </div>
 

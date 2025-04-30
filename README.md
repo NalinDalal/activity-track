@@ -13,6 +13,33 @@ gpt
 so basically what is done:
 - initialised ui
 - homepage done
-- created `/track` endpoint
+- created `/track` endpoint for more info
+- login and signup ui initialised, see for now logic
+
+what to do next:
+- Implement authentication, just make a single user, no bs
+- then the user has the ability to setup a service
+- the service is like-> site to maintain; email of on call engineers based on time
+- list all the services with some info like visitor stats, traffic etc
 
 
+2. **Tracking Script**
+   - Build a client-side `track.js` script to log page views, time, clicks.
+   - Send data to `/api/track`.
+3. **Backend API**
+   - Create `POST /api/track` to receive and store analytics events.
+   - Use `GET /api/stats` to fetch aggregated data.
+4. **Real-Time Handling**
+   - Integrate WebSockets to push live updates to the dashboard.
+   - Optionally use Redis pub/sub for scaling.
+5. **Database Setup**
+   - Use PostgreSQL or SQLite.
+   - Tables: `sessions`, `events`, `pages`.
+6. **Dashboard**
+   - Create a `/dashboard` route to show live metrics.
+   - Use charts and badges to show active users, engagement, etc.
+7. **Social Proof**
+   - Display real-time counters like “57 websites tracked today”.
+   - Pull from backend `/api/stats`.
+
+Maintain the ui across the site, don’t loose control and patience
