@@ -1,14 +1,41 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+
+    try {
+      // Send the sign-up request to the backend API
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      // Handle the response
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An error occurred");
+      }
+
+      const data = await response.json();
+
+      // If sign-up is successful, redirect to login page
+      alert(data.message); // Show success message
+      router.push("/login");
+    } catch (error) {
+      setError(error.message || "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -16,6 +43,7 @@ export default function LoginPage() {
       <div className="p-8 w-full max-w-md rounded-2xl border shadow-xl backdrop-blur-lg bg-white/10 border-white/20">
         <h2 className="mb-6 text-3xl font-bold text-center">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error && <p className="text-center text-red-500">{error}</p>}
           <div>
             <label className="block mb-1 text-sm font-medium text-white/80">
               Email

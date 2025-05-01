@@ -11,12 +11,15 @@ create a smooth landing page, do whatever you want but don't completely reply on
 gpt
 
 so basically what is done:
+29.04.2025
 - initialised ui
 - homepage done
 - created `/track` endpoint for more info
 - login and signup ui initialised, see for now logic
 
 what to do next:
+
+01.05.2025
 - Implement authentication, just make a single user, no bs
 - then the user has the ability to setup a service
 - the service is like-> site to maintain; email of on call engineers based on time
@@ -43,3 +46,11 @@ what to do next:
    - Pull from backend `/api/stats`.
 
 Maintain the ui across the site, don’t loose control and patience
+
+01.05.2025
+spin up a sample db via docker-compose, db available at: `postgresql://postgres:postgres@localhost:5432/nextauth`
+
+initialise the prisma, put db link into `.env`; update the schema, migrate it->
+`npx prisma migrate dev --name init`
+
+init the logic for prisma-> done with `prisma client`

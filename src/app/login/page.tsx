@@ -1,14 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+
+    try {
+      // Make a POST request to the backend API for login
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An error occurred");
+      }
+
+      const data = await response.json();
+
+      // Store the JWT token in sessionStorage
+      sessionStorage.setItem("token", data.token);
+
+      // Optionally, redirect the user to a protected route (e.g., dashboard)
+      router.push("/dashboard"); // Adjust as needed for your app's flow
+    } catch (error) {
+      console.error("Login failed:", error); // Log the error for debugging
+      setError(
+        error.message ||
+          "Invalid credentials or server error. Please try again.",
+      );
+    }
   };
 
   return (
@@ -23,6 +55,7 @@ export default function LoginPage() {
       <div className="z-10 p-8 w-full max-w-md rounded-2xl border shadow-xl backdrop-blur-lg bg-white/10 border-white/20">
         <h2 className="mb-6 text-3xl font-bold text-center">Log In</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error && <p className="text-center text-red-500">{error}</p>}
           <div>
             <label className="block mb-1 text-sm font-medium text-white/80">
               Email
