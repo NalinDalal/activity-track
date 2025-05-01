@@ -54,3 +54,12 @@ initialise the prisma, put db link into `.env`; update the schema, migrate it->
 `npx prisma migrate dev --name init`
 
 init the logic for prisma-> done with `prisma client`
+put a sample data into db->
+| id                                   | email                       | password   | createdAt                  |
+|-------------------------------------|-----------------------------|------------|----------------------------|
+| 35a88960-c546-4ec6-b921-d45da969dc97          | nalindalal2004@gmail.com    | nalin@123  | 2025-05-01T18:26:19.142Z   |
+
+to do next:
+- put up a endpoint to put some data to monitor
+- create a dashboard endpoint where u can see and edit the websites
+- create a another slug where u can see the single website stats in more detail
