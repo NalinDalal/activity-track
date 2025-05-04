@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { prismaClient } from "@/lib/prisma";
 export default function DashboardPage() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,6 +46,7 @@ export default function DashboardPage() {
     <div>
       <h1>Welcome to your Dashboard</h1>
       <p>{userData ? `Hello, ${userData.email}` : "No data"}</p>
+      <p> Well done! successfully logged in</p>
     </div>
   );
 }

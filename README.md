@@ -59,6 +59,16 @@ put a sample data into db->
 |-------------------------------------|-----------------------------|------------|----------------------------|
 | 35a88960-c546-4ec6-b921-d45da969dc97          | nalindalal2004@gmail.com    | nalin@123  | 2025-05-01T18:26:19.142Z   |
 
+02.05.2025
+what to do today, ensure signup, signin logic works fully
+when user signs in, take him here to a dashboard where he/she can manage
+multiple url from db
+
+then upon clicking a url, take to a slug page which provides complete info about
+the url
+put a post requst to put up a url in db, collect a on call engineer email
+
+
 to do next:
 - put up a endpoint to put some data to monitor
 - create a dashboard endpoint where u can see and edit the websites
