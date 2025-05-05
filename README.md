@@ -73,3 +73,9 @@ to do next:
 - put up a endpoint to put some data to monitor
 - create a dashboard endpoint where u can see and edit the websites
 - create a another slug where u can see the single website stats in more detail
+
+05.05.2025
+uhh, made a seed file for db
+added a events endpoint, and updated dashboard endpoint,
+
+problem: update the db with original db

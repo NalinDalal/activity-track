@@ -17,6 +17,32 @@ model User {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+  urls      Url[] // 👈 One-to-many relationship: One user can have many URLs
 }
 
+model Url {
+  id        String   @id @default(uuid())
+  url       String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  events    Event[] // 👈 One-to-many relation to events
+}
 
+model Event {
+  id        String   @id @default(uuid())
+  url       String
+  referrer  String?
+  timestamp DateTime @default(now())
+
+  trackedUrlId String?
+  trackedUrl   TrackedUrl? @relation(fields: [trackedUrlId], references: [id])
+  Url          Url?        @relation(fields: [urlId], references: [id])
+  urlId        String?
+}
+
+model TrackedUrl {
+  id     String  @id @default(uuid())
+  url    String
+  events Event[] // One-to-many relation with events
+}
