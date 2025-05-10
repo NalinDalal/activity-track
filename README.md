@@ -79,3 +79,5 @@ uhh, made a seed file for db
 added a events endpoint, and updated dashboard endpoint,
 
 problem: update the db with original db
+
+updated some ui things
